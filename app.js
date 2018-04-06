@@ -13,11 +13,13 @@ var accounts = require('./routes/accounts');
 var contract = require('./routes/contract');
 var signature = require('./routes/signature');
 var search = require('./routes/search');
+var miners = require('./routes/miners');
+var api = require('./routes/api');
 
 var config = new(require('./config.js'))();
 
 var levelup = require('levelup');
-var db = levelup('/var/lib/explorer/data');
+var db = levelup(process.env.DATA || '/var/lib/explorer/data');
 
 var app = express();
 
@@ -53,6 +55,8 @@ app.use('/accounts', accounts);
 app.use('/contract', contract);
 app.use('/signature', signature);
 app.use('/search', search);
+app.use('/miners', miners);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

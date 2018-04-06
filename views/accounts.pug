@@ -2,17 +2,19 @@ extends layout
 
 block content
   h3 Accounts
+  p Top 100 rich list in Ellaism network.
   table.table
     thead
       tr
+        th Rank
         th Address
         th Type
         th Balance
     tbody
       for account in accounts
         tr
+          td #{account.rank}
           td 
             a(href="/account/" + account.address) #{nameformatter.format(account.address)}
           td #{account.type}
           td #{ethformatter(account.balance)}
-  a.btn.btn-default(href="/accounts/" + lastAccount) Next Page
